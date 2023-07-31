@@ -2,8 +2,7 @@ let trees = [];
 let physics;
 let gb;
 let canvas;
-
-let totalLevels;
+//let totalLevels;
 
 let handParticles = [];
 let handAttractions = [];
@@ -17,7 +16,7 @@ function setup() {
   canvas = createCanvas(windowWidth, windowHeight); 
   canvas.id("canvas");
   physics = new VerletPhysics2D();
-  physics.setWorldBounds(new Rect(0, 0, width, height));
+  //physics.setWorldBounds(new Rect(0, 0, width, height));
   gb = new GravityBehavior(new Vec2D(0, 0.1));
   physics.addBehavior(gb);
 
@@ -33,7 +32,7 @@ function setup() {
       let x = gridWidth * i + gridWidth / 2;
       let y = gridHeight * j + gridHeight / 2;
 
-      totalLevels = floor(random(2,5));
+      let totalLevels = floor(random(2,5));
       let branchCount = floor(random(2,4));
       let tree = new Tree(x, y, random(20,100), branchCount, physics, totalLevels);
       tree.lockRoot(x, y);
@@ -108,7 +107,7 @@ function draw() {
     //console.log(physics.behaviors.length);
     if(physics.behaviors.length < 277){//记得加上Branch的排斥力behavior
       handAttractions[i].attractor.set(handParticles[i].getPosition());
-      handAttractions[i].strength = -20;//increase the strength because it was -0.5 so it's too small for each attractor to have an impact.
+      handAttractions[i].strength = 1;//increase the strength because it was -0.5 so it's too small for each attractor to have an impact.
       physics.addBehavior(handAttractions[i]);
     }else{
       //comment out the line below, and you will see that while it's running, as long as the hand
@@ -131,9 +130,9 @@ function keyPressed(){
 
 
 function mousePressed() {
-  totalLevels = floor(random(2,5));
-  let branchCount = floor(random(2,4));
-  let tree = new Tree(width-mouseX, mouseY, random(20,100), branchCount, physics, totalLevels);
-  tree.lockRoot(width-mouseX, mouseY);
-  trees.push(tree);
+  // let totalLevels = floor(random(2,5));
+  // let branchCount = floor(random(2,4));
+  // let tree = new Tree(width-mouseX, mouseY, random(20,100), branchCount, physics, totalLevels);
+  // tree.lockRoot(width-mouseX, mouseY);
+  // trees.push(tree);
 }
