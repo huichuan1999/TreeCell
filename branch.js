@@ -5,6 +5,7 @@ class Branch {
     this.totalLevels = totalLevels;
     this.end = end;
     let d = dist(this.end.x, this.end.y, this.begin.x, this.begin.y);
+
     let repulsion = new AttractionBehavior(this.end, d, -0.5);
     physics.addBehavior(repulsion);
 

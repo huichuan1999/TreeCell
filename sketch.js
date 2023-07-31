@@ -21,16 +21,15 @@ function setup() {
   gb = new GravityBehavior(new Vec2D(0, 0.1));
   physics.addBehavior(gb);
 
-  //physics.setDrag(0.01);
+  physics.setDrag(0.1);
 
   colorMode(HSB,255);
    
+    let gridWidth = width / 2;
+    let gridHeight = height / 2;//几行几列就改成几
 
-    let gridWidth = width / 3;
-    let gridHeight = height / 3;
-
-  for(let i = 0; i < 3; i++) {
-    for(let j = 0; j < 3; j++) {
+  for(let i = 0; i < 2; i++) {
+    for(let j = 0; j < 2; j++) {
       let x = gridWidth * i + gridWidth / 2;
       let y = gridHeight * j + gridHeight / 2;
 
@@ -101,11 +100,13 @@ function draw() {
     addHandParticle(allLandmarkCoordinates);
   }
 
+
   for (let i = 0; i < handParticles.length; i++) {
     //there is maybe a better place and time to do this but it was looking like there were
     //19 handparticles so we only really want 19 physcis behaviors,
-    //
-    if(physics.behaviors.length < 19){
+    // 输出behavior的数量
+    //console.log(physics.behaviors.length);
+    if(physics.behaviors.length < 277){//记得加上Branch的排斥力behavior
       handAttractions[i].attractor.set(handParticles[i].getPosition());
       handAttractions[i].strength = -20;//increase the strength because it was -0.5 so it's too small for each attractor to have an impact.
       physics.addBehavior(handAttractions[i]);

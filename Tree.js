@@ -4,18 +4,20 @@ class Tree {
         this.physics = physics;
         this.branchLength = branchLength;
         this.levels = levels;
+        this.branchCount = branchCount;
+        //branchCount就是一组里面有几根分形树
 
         let a = new VerletParticle2D(startX, startY);
         a.lock();
         this.physics.addParticle(a);
 
-        this.generateTree(a, this.branchLength, branchCount, this.levels);
+        this.generateTree(a, this.branchLength, this.branchCount, this.levels);
     }
 
     generateTree(rootParticle, branchLength, branchCount, levels) {
-        let angleStep = TWO_PI / branchCount;
+        let angleStep = TWO_PI / this.branchCount;
 
-        for (let i = 0; i < branchCount; i++) {
+        for (let i = 0; i < this.branchCount; i++) {
             let angle = angleStep * i;
             let b = new VerletParticle2D(rootParticle.x + cos(angle) * branchLength, rootParticle.y + sin(angle) * branchLength);
             this.physics.addParticle(b);
