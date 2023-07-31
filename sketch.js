@@ -14,17 +14,33 @@ const pinchThreshold = 30;
 let particleGrabRadius = 20;
 
 function setup() {
-  canvas = createCanvas(windowWidth, windowHeight);
+  canvas = createCanvas(windowWidth, windowHeight); 
   canvas.id("canvas");
   physics = new VerletPhysics2D();
   physics.setWorldBounds(new Rect(0, 0, width, height));
   gb = new GravityBehavior(new Vec2D(0, 0.1));
   physics.addBehavior(gb);
 
-  physics.setDrag(0.01);
+  //physics.setDrag(0.01);
 
   colorMode(HSB,255);
-  
+   
+
+    let gridWidth = width / 3;
+    let gridHeight = height / 3;
+
+  for(let i = 0; i < 3; i++) {
+    for(let j = 0; j < 3; j++) {
+      let x = gridWidth * i + gridWidth / 2;
+      let y = gridHeight * j + gridHeight / 2;
+
+      totalLevels = floor(random(2,5));
+      let branchCount = floor(random(2,4));
+      let tree = new Tree(x, y, random(20,100), branchCount, physics, totalLevels);
+      tree.lockRoot(x, y);
+      trees.push(tree);
+    }
+  }
   //let tree = new Tree(width / 2, height / 2, height / 8, 3, physics, totalLevels);
   // let tree1 = new Tree(width / 2, height / 2 + height / 6, height / 8, 5, physics, totalLevels);
   

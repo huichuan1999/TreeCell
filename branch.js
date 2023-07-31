@@ -1,7 +1,8 @@
 class Branch {
-  constructor(begin, end, level) {
+  constructor(begin, end, level, totalLevels) {
     this.level = level;
     this.begin = begin;
+    this.totalLevels = totalLevels;
     this.end = end;
     let d = dist(this.end.x, this.end.y, this.begin.x, this.begin.y);
     let repulsion = new AttractionBehavior(this.end, d, -0.5);
@@ -17,7 +18,7 @@ class Branch {
     //let sw = 4 / log(this.level + 2);
     //strokeWeight(sw);
     //strokeWeight(map(this.level, totalLevels, 0, 8, 1));
-    let sw = map(this.level, totalLevels, 0, 8, 1);
+    let sw = map(this.level, this.totalLevels, 0, 8, 1);
     strokeWeight(sw);
     //console.log(`level: ${this.level}, strokeWeight: ${sw}`);
     line(this.begin.x, this.begin.y, this.end.x, this.end.y);
@@ -30,7 +31,7 @@ class Branch {
     dir.scaleSelf(0.67);
     let newEnd = new VerletParticle2D(this.end.add(dir));
     physics.addParticle(newEnd);
-    let b = new Branch(this.end, newEnd, this.level + 1);
+    let b = new Branch(this.end, newEnd, this.level + 1, this.totalLevels);
     return b;
   }
 
@@ -40,7 +41,7 @@ class Branch {
     dir.scaleSelf(0.67);
     let newEnd = new VerletParticle2D(this.end.add(dir));
     physics.addParticle(newEnd);
-    let b = new Branch(this.end, newEnd, this.level + 1);
+    let b = new Branch(this.end, newEnd, this.level + 1, this.totalLevels);
     return b;
   }
 }

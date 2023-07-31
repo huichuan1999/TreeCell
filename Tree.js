@@ -19,7 +19,7 @@ class Tree {
             let angle = angleStep * i;
             let b = new VerletParticle2D(rootParticle.x + cos(angle) * branchLength, rootParticle.y + sin(angle) * branchLength);
             this.physics.addParticle(b);
-            let rootBranch = new Branch(rootParticle, b, 0);
+            let rootBranch = new Branch(rootParticle, b, 0, this.levels);
             this.tree.push(rootBranch);
         }
 
