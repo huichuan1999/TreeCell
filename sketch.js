@@ -6,7 +6,6 @@ let canvas;
 
 let handParticles = [];
 let handAttractions = [];
-//let particles = [];
 
 // Adjust the pinch threshold according to the actual situation
 const pinchThreshold = 30;
@@ -16,11 +15,11 @@ function setup() {
   canvas = createCanvas(windowWidth, windowHeight); 
   canvas.id("canvas");
   physics = new VerletPhysics2D();
-  //physics.setWorldBounds(new Rect(0, 0, width, height));
-  gb = new GravityBehavior(new Vec2D(0, 0.1));
-  physics.addBehavior(gb);
+  physics.setWorldBounds(new Rect(0, 0, width, height));
+  // gb = new GravityBehavior(new Vec2D(0, 0.1));
+  // physics.addBehavior(gb);
 
-  physics.setDrag(0.1);
+  physics.setDrag(0.05);
 
   colorMode(HSB,255);
    
@@ -35,7 +34,7 @@ function setup() {
       let totalLevels = floor(random(2,5));
       let branchCount = floor(random(2,4));
       let tree = new Tree(x, y, random(20,100), branchCount, physics, totalLevels);
-      tree.lockRoot(x, y);
+      //tree.lockRoot(x, y);
       trees.push(tree);
     }
   }
@@ -99,15 +98,16 @@ function draw() {
     addHandParticle(allLandmarkCoordinates);
   }
 
-
   for (let i = 0; i < handParticles.length; i++) {
     //there is maybe a better place and time to do this but it was looking like there were
     //19 handparticles so we only really want 19 physcis behaviors,
     // 输出behavior的数量
     //console.log(physics.behaviors.length);
-    if(physics.behaviors.length < 277){//记得加上Branch的排斥力behavior
+    //console.log(physics.particles.length);
+
+    if(physics.behaviors.length < physics.particles.length + 19){//记得加上Branch的排斥力behavior
       handAttractions[i].attractor.set(handParticles[i].getPosition());
-      handAttractions[i].strength = 1;//increase the strength because it was -0.5 so it's too small for each attractor to have an impact.
+      //handAttractions[i].strength = 1;//increase the strength because it was -0.5 so it's too small for each attractor to have an impact.
       physics.addBehavior(handAttractions[i]);
     }else{
       //comment out the line below, and you will see that while it's running, as long as the hand
