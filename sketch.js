@@ -31,7 +31,7 @@ function setup() {
   colorMode(HSB, 255);
   createTreeCell(3, 1);
   createTree();
-  createParticleNetrwork();
+  //createParticleNetrwork();
 
 }
 
@@ -46,7 +46,7 @@ function draw() {
   handDetected()
   drawTreeCell();
   drawTree();
-  drawParticleNetwork();
+  //drawParticleNetwork();
 }
 
 

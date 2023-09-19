@@ -18,16 +18,16 @@ class Branch {
 
   show() {
     stroke(255, 150);
-    //let sw = 4 / log(this.level + 2);
-    //strokeWeight(sw);
-    //strokeWeight(map(this.level, totalLevels, 0, 8, 1));
+    // let sw = 4 / log(this.level + 2);
+    // strokeWeight(sw);
     let sw = map(this.level, this.totalLevels, 0, 5, 1);
+    let a = map(this.level, this.totalLevels, 0, 200, 50)
     //strokeWeight(sw);
     strokeWeight(1);
     //console.log(`level: ${this.level}, strokeWeight: ${sw}`);
     line(this.begin.x, this.begin.y, this.end.x, this.end.y);
-    fill(255,100);
-    circle(this.end.x, this.end.y, sw * 5 + 8 * sin(frameCount/40));
+    fill(255,a);
+    circle(this.end.x, this.end.y, sw * 5 + 5 * sin(frameCount/40));
   }
 
   branchA() {
@@ -122,9 +122,11 @@ function createTree() {
         let totalLevels = 3;
         let branchCount = 2;
         //看好在哪个physics里面
-        let tree = new Tree(x, y, random(70, 120), branchCount, physics, totalLevels, true);
+        let tree = new Tree(x, y, random(50,80), branchCount, physics, totalLevels, true);
+        let _tree = new Tree(x, -y, random(50,80), branchCount, physics, totalLevels, true);
         //let tree = new Tree(x, y, random(50, 100), branchCount, tailPhysics, totalLevels);
         trees.push(tree);
+        trees.push(_tree);
     }
 }
 
@@ -147,7 +149,7 @@ function createTreeCell(row, col) {
 
       let totalLevels = floor(random(2, 5));
       let branchCount = floor(random(3, 5));
-      let tree = new Tree(x, y, random(20, 100), branchCount, physics, totalLevels, false);
+      let tree = new Tree(x, y, random(50, 100), branchCount, physics, totalLevels, false);
       //tree.lockRoot(x, y);
       treeCells.push(tree);
     }
@@ -164,7 +166,7 @@ function drawTreeCell() {
     treeCell.show();
   }
 
-  for (let s of physics.springs) {
-    line(s.a.x, s.a.y, s.b.x, s.b.y);
-  }
+  // for (let s of physics.springs) {
+  //   line(s.a.x, s.a.y, s.b.x, s.b.y);
+  // }
 }
