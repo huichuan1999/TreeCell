@@ -27,7 +27,7 @@ class Branch {
     //console.log(`level: ${this.level}, strokeWeight: ${sw}`);
     line(this.begin.x, this.begin.y, this.end.x, this.end.y);
     fill(255,100);
-    circle(this.end.x, this.end.y, sw * 5);
+    circle(this.end.x, this.end.y, sw * 5 + 8 * sin(frameCount/40));
   }
 
   branchA() {
