@@ -8,7 +8,7 @@ class Tree {
         //branchCount就是一组里面有几根分形树
 
         let a = new VerletParticle2D(startX, startY);
-        //a.lock();
+        a.lock();
         this.physics.addParticle(a);
 
         this.generateTree(a, this.branchLength, this.branchCount, this.levels);
