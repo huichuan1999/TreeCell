@@ -10,7 +10,7 @@ class Branch {
     let repulsion = new AttractionBehavior(this.end, d, -0.7);
     this.physics.addBehavior(repulsion);
 
-    let spring = new VerletSpring2D(this.begin, this.end, d, 0.1);
+    let spring = new VerletSpring2D(this.begin, this.end, d, 0.05);
     this.physics.addSpring(spring);
     this.finished = false;
 
@@ -21,9 +21,10 @@ class Branch {
     // let sw = 4 / log(this.level + 2);
     // strokeWeight(sw);
     let sw = map(this.level, this.totalLevels, 0, 5, 1);
+    let sw1 = map(this.level, this.totalLevels, 0, 1, 3);
     let a = map(this.level, this.totalLevels, 0, 200, 50)
-    //strokeWeight(sw);
-    strokeWeight(1);
+    strokeWeight(sw1);
+    //strokeWeight(1);
     //console.log(`level: ${this.level}, strokeWeight: ${sw}`);
     line(this.begin.x, this.begin.y, this.end.x, this.end.y);
     fill(255,a);
@@ -149,7 +150,7 @@ function createTreeCell(row, col) {
 
       let totalLevels = floor(random(2, 5));
       let branchCount = floor(random(3, 5));
-      let tree = new Tree(x, y, random(50, 100), branchCount, physics, totalLevels, false);
+      let tree = new Tree(x, y, random(40, 80), branchCount, physics, totalLevels, false);
       //tree.lockRoot(x, y);
       treeCells.push(tree);
     }

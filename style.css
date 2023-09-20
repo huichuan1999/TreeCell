@@ -12,7 +12,7 @@ html, body {
   transform: rotateY(180deg) translateY(-50%);
   top: 50%;  /* Moves it half its own height upwards */
   left: 0;
-  width: 100%;
+  width: 100vw;
   /* height: 50%; */
   z-index: 2;
 }
