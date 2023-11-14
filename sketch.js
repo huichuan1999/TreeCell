@@ -12,7 +12,7 @@ const pinchThreshold = 30;
 let particleGrabRadius = 20;
 
 function setup() {
-  canvas = createCanvas(1920/2,1080/2);
+  canvas = createCanvas(2600/4,2900/4);
   canvas.id("canvas");
   physics = new VerletPhysics2D();
   physics.setWorldBounds(new Rect(0, 0, width, height));
