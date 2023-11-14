@@ -22,7 +22,7 @@ class Branch {
     // strokeWeight(sw);
     let sw = map(this.level, this.totalLevels, 0, 5, 1);
     let sw1 = map(this.level, this.totalLevels, 0, 1, 3);
-    let a = map(this.level, this.totalLevels, 0, 200, 50);
+    let a = map(this.level, this.totalLevels, 0, 100, 20);
     strokeWeight(sw1);
     //strokeWeight(1);
     //console.log(`level: ${this.level}, strokeWeight: ${sw}`);

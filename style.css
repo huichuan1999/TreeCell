@@ -19,7 +19,7 @@ html, body {
 
 #video {
   position: absolute;
-  transform: rotateY(180deg)scale(0.5);
+  transform: rotateY(180deg);
   filter: grayscale(100%) ;
   top: 0%;
   left: 0;
