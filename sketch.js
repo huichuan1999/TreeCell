@@ -12,7 +12,10 @@ const pinchThreshold = 30;
 let particleGrabRadius = 20;
 
 function setup() {
-  canvas = createCanvas(260*2,290*2);
+  let ratio = 3/4;
+  let canvasHeight = 1080;//动态设置画布宽度
+  let canvasWidth = canvasHeight/ratio; // 对应的高度
+  canvas = createCanvas(canvasWidth/2, canvasHeight/2);
   canvas.id("canvas");
   physics = new VerletPhysics2D();
   physics.setWorldBounds(new Rect(0, 0, width, height));
